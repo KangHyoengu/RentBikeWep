@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+body section {
+	width: 100%;
+	min-height: 100vh;
+	margin-top: 100px;
+}
+
+.content-wrap {
+	width: 1200px;
+	height: 100%;
+	position: relative;
+	left: 50%;
+	margin-left: -600px;
+}
+
+@media screen and (max-width: 1200px) {
+	.content-wrap{
+		width: 900px;
+		margin-left: -450px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.content-wrap{
+		width: 600px;
+		margin-left: -300px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.content-wrap{
+		width: 300px;
+		margin-left: -150px;
+	}
+}
