@@ -8,10 +8,12 @@ body section {
 
 .content-wrap {
 	width: 1200px;
-	height: 100%;
+	height: auto;
+	min-height: 100vh;
 	position: relative;
 	left: 50%;
 	margin-left: -600px;
+	padding: 0 10px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -30,7 +32,8 @@ body section {
 
 @media screen and (max-width: 600px) {
 	.content-wrap{
-		width: 300px;
-		margin-left: -150px;
+		width: 100%;
+		margin-left: 0;
+		left: 0;
 	}
 }

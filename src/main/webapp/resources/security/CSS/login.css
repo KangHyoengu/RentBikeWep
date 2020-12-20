@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+.bgImg{
+	width: 100%;
+	height: auto;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/main_img.jpg);
+	background-size: contain;
+}
+
+.login-wrap {
+	width: 600px;
+	height: 420px;
+	position: absolute;
+	top: 50%;
+	margin-top: -260px;
+	left: 50%;
+	margin-left: -300px;
+	border: 2px solid #e8e8e8;
+	border-radius: 5px;
+	padding: 10px;
+	background-color: rgba(25, 135, 84, 0.5);
+	color: #fff;
+}
+
+.login-wrap form {
+	height: 200px;
+	position: relative;
+	top: 50%;
+	margin-top: -100px;
+}
+
+.login-wrap .btn-wrap {
+	height: 38px;
+}
+
+.btn-wrap #btn_login {
+	float: right;
+}
+
+@media screen and (max-width: 900px) {
+	.login-wrap {
+		width: 450px;
+		height: 320px;
+		margin-top: -210px;
+		margin-left: -225px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.login-wrap {
+		width: 300px;
+		height: 220px;
+		margin-top: -160px;
+		margin-left: -150px;
+	}
+}
+@media screen and (max-width: 300px) {
+	.login-wrap {
+		width: 100%;
+		left: 0;
+		margin-left: 0;
+	}
+}

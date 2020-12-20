@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rent.bike.beans.board.BoardDAO">
+
+	<!-- 한 페이지에 보여주는 게시글 리스트 -->
+	<select id="pageList" resultType="com.rent.bike.beans.board.BoardDTO">
+		<![CDATA[
+			SELECT A.* FROM  
+			(SELECT ROWNUM AS RNUM, T.*, M.MID FROM (SELECT * FROM BOARD ORDER BY BNO DESC) T, MEMBER M WHERE T.MNO = M.MNO) A
+			WHERE A.RNUM >= #{start} AND A.RNUM <= #{end}
+		]]>	
+	</select>
+	
+	<!-- 한 게시글에 있는 댓글 -->
+	<select id="comments" resultType="com.rent.bike.beans.board.BoardCommentDTO">
+		SELECT * FROM BOARD_COMMENT WHERE BNO = #{bno}
+	</select>
+	
+	<!-- 한 게시글에 있는 이미지 -->
+	<select id="images" resultType="com.rent.bike.beans.board.BoardImagesDTO">
+		SELECT * FROM BOARD_IMAGES WHERE BNO = #{bno}
+	</select>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insert" flushCache="true" parameterType="com.rent.bike.beans.board.BoardDTO">
+		INSERT INTO BOARD VALUES
+		(BOARD_SEQ.NEXTVAL, (SELECT MNO FROM MEMBER WHERE MID = #{mid}), #{btitle}, #{bcontent}, 0, sysdate)
+	</insert>
+	
+	<!-- 게시글 상세보기 -->
+	<select id="boardDetail" parameterType="com.rent.bike.beans.board.BoardDTO">
+		SELECT * FROM BOARD WHERE BNO = #{bno}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="update" flushCache="true" parameterType="com.rent.bike.beans.board.BoardDTO">
+		UPDATE BOARD SET
+		BTITLE = #{btitle},
+		BCONTENT = #{bcontent}
+		WHERE BNO = #{bno}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete" flushCache="true">
+		DELETE FROM BOARD WHERE BNO = #{bno}
+	</delete>
+	
+	<!-- 전체 게시글 수 -->
+	<select id="countAll" resultType="int">
+		SELECT COUNT(*) FROM BOARD
+	</select>
+	
+	<!-- 게시글 조회수 업 -->
+	<update id="viewCnt" flushCache="true">
+		UPDATE BOARD SET
+		BVIEW = (SELECT (BVIEW + 1) FROM BOARD WHERE BNO = #{bno})
+		WHERE BNO = #{bno}
+	</update>
+</mapper>

@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.search-wrap {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	top: 100px;
+	padding: 0 20px;
+	border-bottom: 1px solid #e8e8e8;
+	z-index: 999;
+	background-color: #fff;
+}
+
+.search-wrap .input-group {
+	margin-top: 6px;
+}
+
+#google-map{
+	width: 100%;
+	height: 100vh;
+}
+
+body section {
+	margin-top: 150px;
+}
+
+@media screen and (max-width: 900px){
+	#nav {
+		margin-top: 84px;	
+	}
+}

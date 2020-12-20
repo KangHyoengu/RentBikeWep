@@ -1,1 +1,38 @@
 @charset "UTF-8";
+
+footer {
+	width: 100%;
+	height: 100px;
+	background-color: #198754;
+	color: #fff;
+}
+
+#sns-icons {
+	width: 250px;
+	height: 66px;
+	text-align: center;
+	position: relative;
+	left: 50%;
+	margin-left: -125px;
+	padding-top: 20px;
+}
+
+#sns-icons a, #sns-icons a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+
+.sns {
+	width: 70px;
+	height: 66px;
+	margin-left: 10px;
+	float: left;
+}
+
+.sns span {
+	font-size: 16px;
+}
+
+.sns i{
+	font-size: 40px;
+}

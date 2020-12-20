@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#logo {
+	width: 400px;
+	position: relative;
+	left: 50%;
+	margin-left: -200px;
+}
+
+#logo a, #logo img{
+	width: 100%;
+}
+
+form[name=joinFrm]{
+	width: 100%;
+	height: auto;
+	margin-top: 30px;
+}
+
+#use-agreement{
+	margin-right: 5px;
+}
+
+.email-wrap, .id-wrap{
+	margin-bottom: 5px;
+}
+
+.emailChk, .idChk{
+	margin-bottom: 16px;
+}
+
+.submit{
+	margin-bottom: 40px;
+}
+@media screen and (max-width: 400px) {
+	#logo{
+		width: 300px;
+		margin-left: -150px;
+	}
+}

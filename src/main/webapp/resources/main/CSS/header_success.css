@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+:root {
+	--main-font-color: #198754;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Jua', sans-serif;
+}
+
+header {
+	width: 100%;
+	min-width: 300px;
+	height: 100px;
+	padding: 1.5rem;
+	position: fixed;
+	top: 0;
+	background-color: var(--main-font-color);
+	z-index: 99;
+	overflow: hidden;
+	transition-duration: 0.5s;
+}
+
+#header {
+	width: 100%;
+	height: 100%;
+}
+
+#logo {
+	min-width: 150px;
+	width: 20%;
+	height: 52px;
+	float: left;
+}
+
+#logo img, #logo a {
+	width: 100%;
+	height: 52px;
+}
+
+#nav {
+	width: 78%;
+	height: 100%;
+	float: right;
+}
+
+.nav-item {
+	width: 140px;
+	height: 100%;
+	margin-left: 10px;
+	text-align: center;
+}
+
+.nav-link {
+	color: #fff;
+	border: 1px solid var(--main-font-color);
+	font-size: 20px;
+}
+
+.nav-link:hover {
+	color: #fff;
+	border: 1px solid #fff;
+}
+
+.nav-pills .clicked {
+	color: var(--main-font-color);
+	background-color: var(--main-font-color);
+	border: 1px solid #fff;
+}
+
+.hidden {
+	display: none;
+}
+
+#hamberger {
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	font-size: 30px;
+	padding: 10px;
+	color: #fff;
+	float: right;
+	cursor: pointer;
+	display: none;
+}
+
+#hamberger>i {
+	float: right;
+}
+
+.logout {
+	cursor: pointer;
+}
+
+.now {
+	border: 1px solid var(--main-font-color);
+	background-color: #fff;
+	color: var(--main-font-color);
+}
+
+.now:hover {
+	color: var(--main-font-color);
+	border: 1px solid #198754;
+}
+
+@media screen and (max-width: 1200px) {
+	.nav-link{
+		font-size: 18px;
+	}
+	
+	#nav {
+		padding: 5px;
+	}
+	
+	.nav-item {
+		width: 120px;
+	}
+}
+
+@media screen and (max-width: 912px) {
+	#nav {
+		width: 100%;
+		height: auto;
+		margin-top: 24px;
+		padding: 0;
+	}
+	
+	.nav-link{
+		font-size: 20px;
+	}
+	
+	#hamberger {
+		display: block;
+	}
+	
+	.nav-item {
+		width: 100%;
+		transition-duration: 0.5s;
+	}
+}

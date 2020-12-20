@@ -1,6 +1,3 @@
-/**
- * 
- */
 $('#hamberger').click(() => {
 	let $this = $(event.target).parents('header');
 	
