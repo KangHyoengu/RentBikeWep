@@ -56,7 +56,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item">
-								<a class="nav-link username">${username }</a>
+								<a class="nav-link username" href="${pageContext.request.contextPath }/member/info">${username }</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link logout">로그아웃</a>
@@ -73,7 +73,7 @@
 	<div class="search-wrap">
 		<div class="input-group mb-3">
 			<input type="text" class="form-control" name="search" placeholder="장소 검색" aria-label="search" aria-describedby="search">
-			<button class="btn btn-success" type="button" id="search">Button</button>
+			<button class="btn btn-success" type="button" id="search">검색하기</button>
 		</div>
 	</div>
 	<section>

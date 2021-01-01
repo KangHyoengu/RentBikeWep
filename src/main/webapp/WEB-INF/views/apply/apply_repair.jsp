@@ -56,7 +56,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item">
-								<a class="nav-link username">${username }</a>
+								<a class="nav-link username" href="${pageContext.request.contextPath }/member/info">${username }</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link logout">로그아웃</a>

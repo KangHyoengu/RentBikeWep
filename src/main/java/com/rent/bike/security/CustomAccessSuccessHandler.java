@@ -32,7 +32,7 @@ public class CustomAccessSuccessHandler implements AuthenticationSuccessHandler 
 		// 만약 사용자가 ROLE_ADMIN 권한을 가졌다면, 로그인 직후 곧바로 admin/amain 으로 이동
 
 		if (roleNames.contains("ROLE_ADMIN")) {
-			response.sendRedirect(request.getContextPath() + "/admin/amain");
+			response.sendRedirect(request.getContextPath() + "/admin/adminRepair");
 			return;
 		}
 

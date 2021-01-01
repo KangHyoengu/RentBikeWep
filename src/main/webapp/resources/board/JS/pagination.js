@@ -123,13 +123,15 @@ function loadData(){
 
 function buildBoard(jsonObj){
 	const data = jsonObj.data;
-	let str = '<tr data-bs-toggle="modal" data-bs-target="#detail" onclick="detail()">';
+	let str = '';
 	
 	for (var i = 0; i < data.length; i++) {
+		str += '<tr data-bs-toggle="modal" data-bs-target="#detail" onclick="detail()" data-no="'+data[i].bno+'">';
 		str += '<th scope="row">'+data[i].bno+'</th>';
 		str += '<td>'+data[i].btitle+'</td>';
 		str += '<td>'+data[i].mid+'</td>';
-		str += '<td>'+data[i].regdate+'</td></tr>';
+		str += '<td>'+data[i].regdate+'</td>';
+		str += '<td>'+data[i].bview+'</td></tr>';
 	}
 	
 	$('#tbody').html(str);

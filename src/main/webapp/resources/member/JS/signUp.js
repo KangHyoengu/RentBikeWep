@@ -45,8 +45,8 @@ function submitChk() {
 	const regUsername = /^[a-zA-Z0-9]*$/;
 	const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/;
 	const regKor = /^[가-힣]*$/;
-	const regNum = /^[0-9]*$/;
 	const regBirth = /^[0-9]{8}$/;
+	const regPhone = /^[0-9]{10,11}$/;
 	const regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	
 	if(username == "" || username == null || 
@@ -91,7 +91,7 @@ function submitChk() {
 	
 	if(!regKor.test(name)){
 		alert("이름은 한글만 가능합니다.");
-		$("input:password[name=mname]").focus();
+		$("input:text[name=mname]").focus();
 		return false;
 	}
 	
@@ -101,8 +101,8 @@ function submitChk() {
 		return false;
 	}
 	
-	if(!regNum.test(phone)){
-		alert("전화번호는 숫자만 가능합니다.");
+	if(!regPhone.test(phone)){
+		alert("전화번호를 '-'없이 정확히 입력해 주세요.");
 		$("input:text[name=mphone]").focus();
 		return false;
 	}

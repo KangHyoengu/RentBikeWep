@@ -13,7 +13,9 @@
 	
 	<!-- 한 게시글에 있는 댓글 -->
 	<select id="comments" resultType="com.rent.bike.beans.board.BoardCommentDTO">
-		SELECT * FROM BOARD_COMMENT WHERE BNO = #{bno}
+		SELECT C.*, M.MID FROM MEMBER M,
+		(SELECT * FROM BOARD_COMMENT WHERE BNO = #{bno}) C
+		WHERE C.MNO = M.MNO
 	</select>
 	
 	<!-- 한 게시글에 있는 이미지 -->
@@ -22,14 +24,33 @@
 	</select>
 	
 	<!-- 게시글 작성 -->
-	<insert id="insert" flushCache="true" parameterType="com.rent.bike.beans.board.BoardDTO">
+	<insert id="insert" flushCache="true" parameterType="com.rent.bike.beans.board.BoardDTO" 
+			useGeneratedKeys="true" keyProperty="bno" keyColumn="bno">
 		INSERT INTO BOARD VALUES
 		(BOARD_SEQ.NEXTVAL, (SELECT MNO FROM MEMBER WHERE MID = #{mid}), #{btitle}, #{bcontent}, 0, sysdate)
 	</insert>
 	
+	<!-- 이미지 저장 -->
+	<insert id="insertImages" flushCache="true">
+		INSERT ALL
+		<foreach item="item" index="index" collection="images">
+			INTO BOARD_IMAGES VALUES (#{bno}, #{item})
+  		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<!-- 댓글 작성 -->
+	<insert id="insertComment" flushCache="true" parameterType="com.rent.bike.beans.board.BoardCommentDTO"
+		useGeneratedKeys="true" keyProperty="cno" keyColumn="cno">
+		INSERT INTO BOARD_COMMENT VALUES
+		(BOARD_COMMENT_SEQ.NEXTVAL, #{bno}, (SELECT MNO FROM MEMBER WHERE MID = #{mid}), #{ccontent}, SYSDATE)
+	</insert>
+	
 	<!-- 게시글 상세보기 -->
-	<select id="boardDetail" parameterType="com.rent.bike.beans.board.BoardDTO">
-		SELECT * FROM BOARD WHERE BNO = #{bno}
+	<select id="boardDetail" resultType="com.rent.bike.beans.board.BoardDTO">
+		SELECT B.*, M.MID FROM MEMBER M,
+		(SELECT * FROM BOARD WHERE BNO = #{bno}) B
+		WHERE B.MNO = M.MNO
 	</select>
 	
 	<!-- 게시글 수정 -->

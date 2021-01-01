@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+body section {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/main_img.jpg);
+	background-size: contain;
+}
+
+.title {
+	height: 46px;
+	position: relative;
+	top: 20px;
+	margin-bottom: 25px;
+}
+
+.title h2 {
+	color: #fff;
+	float: left;
+	margin-right: 10%;
+}
+
+.title input {
+	width: 50%;
+	position: absolute;
+	left: 50%;
+	margin-left: -25%;
+}
+
+.member-table table {
+	background-color: #fff;
+}
+
+.info-wrap {
+	width: 100%;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.info-wrap:last-of-type {
+	margin-bottom: 0;
+}
+
+.info-wrap div {
+	color: #198754;
+}

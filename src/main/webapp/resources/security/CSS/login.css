@@ -20,21 +20,43 @@
 	padding: 10px;
 	background-color: rgba(25, 135, 84, 0.5);
 	color: #fff;
+	overflow: hidden;
 }
 
-.login-wrap form {
+.wrap {
+	width: 100%;
+	height: 200%;
+	transition-duration: 0.4s;
+}
+
+.login {
+	width: 100%;
+	height: 396px;
+	padding: 108px 0;
+	margin-bottom: 10px;
+}
+
+.login form {
 	height: 200px;
-	position: relative;
-	top: 50%;
-	margin-top: -100px;
 }
 
 .login-wrap .btn-wrap {
 	height: 38px;
 }
 
-.btn-wrap #btn_login {
+.btn-wrap #btn_login, #search {
 	float: right;
+}
+
+.search-wrap {
+	width: 100%;
+	height: 396px;
+	padding: 73px 0;
+	margin-bottom: 10px;
+}
+
+.search {
+	height: 240px;
 }
 
 @media screen and (max-width: 900px) {
@@ -44,6 +66,16 @@
 		margin-top: -210px;
 		margin-left: -225px;
 	}
+	
+	.login {
+		height: 296px;
+		padding: 53px 0;
+	}
+	
+	.search-wrap {
+		height: 296px;
+		padding: 28px 0;
+	}
 }
 @media screen and (max-width: 600px) {
 	.login-wrap {
@@ -51,6 +83,30 @@
 		height: 220px;
 		margin-top: -160px;
 		margin-left: -150px;
+	}
+	
+	.input-group input, 
+	.input-group span,
+	.input-group button {
+		font-size: 14px;
+		height: 25px;
+	}
+	
+	.search {
+		height: 196px;
+	}
+	
+	.input-group button {
+		padding: 3px 12px; 
+	}
+	
+	.btn-wrap input {
+		font-size: 14px;
+	}
+	
+	.login, .search-wrap{
+		height: 196px;
+		padding: 0;
 	}
 }
 @media screen and (max-width: 300px) {

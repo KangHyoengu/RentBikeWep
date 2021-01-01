@@ -9,6 +9,10 @@
 	cursor: pointer;
 }
 
+#tbody tr td:first-of-type {
+	overflow: hidden;
+}
+
 .page-link{
 	color: #198754;
 	cursor: pointer;
@@ -71,6 +75,341 @@
 	margin-bottom: 5px;
 }
 
+#detail {
+	width: 1000px;
+	height: 800px;
+	position: absolute;
+	top: 50%;
+	margin-top: -400px;
+	left: 50%;
+	margin-left: -500px;
+	padding-right: 0 !important;
+}
+
+.m-dia {
+	margin: 0;
+}
+
+.m-bo {
+	padding: 0;
+}
+
+.x-btn {
+	position: absolute;
+	top: 2px;
+	right: 5px;	
+	cursor: pointer;
+	z-index: 99;
+	color: #000;
+}
+
+.m-dia, 
+.m-con,
+.m-bo,
+.modal-bcontent {
+	max-width: 1000px;
+	width: 100%;
+	height: 100%;
+}
+
+.image-wrap {
+	width: 66.6%;
+	height: 100%;
+	float: left;
+	background-color: #fff;
+	overflow: hidden;
+	border-right: 1px solid #e8e8e8;
+}
+
+.glass {
+	width: 664.66px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.images {
+	width: auto;
+	height: 100%;
+	transition-duration: 0.4s;
+}
+
+.img-wrap {
+	width: 663.65px;
+	height: 100%;
+	float: left;
+}
+
+.dots {
+	width: 664.66px;
+	height: 3%;
+	font-size: 10px;
+	position: absolute;
+	bottom: 0;
+	z-index: 99;
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.dot {
+	margin-right: 2px;
+}
+
+.fa-circle {
+	color: #000;
+}
+
+.gray{
+	color: #157347;
+}
+
+.image-wrap {
+	padding: 20px 0 27.55px 0;
+}
+
+.image-wrap img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.contents-wrap {
+	width: 33.3%;
+	height: 100%;
+	float: left;
+	padding: 5px;
+}
+
+.contents {
+	width: 100%;
+	height: 200px;
+}
+
+.btitle {
+	width: 100%;
+	height: 30px;
+}
+
+.bview::before {
+	content: "조회수: ";
+}
+
+.bview {
+	width: 100%;
+	height: 30px;
+}
+
+.bcontent {
+	width: 100%;
+	height: 140px;
+	overflow: hidden;
+}
+
+.comments-wrap {
+	width: 100%;
+	height: 588px;
+}
+
+.comments-input {
+	width: 100%;
+	height: 0;
+	border-bottom: 1px solid #e8e8e8;
+	transition-duration: 0.5s;
+	overflow: hidden;
+	margin-top: 5px;
+}
+
+.comment-write {
+	float: right;
+}
+
+.comment-none {
+	width: 100%;
+	height: 96px;
+	padding: 30px 0;
+	font-size: 25px;
+	text-align: center;
+}
+
+.comment-none::before {
+	content: "댓글이 없습니다.";
+}
+
+.userName {
+	width: 100%;
+	height: 20px;
+}
+
+.t-area-wrap {
+	width: 100%;
+	height: 68px;
+	margin-bottom: 10px;
+}
+
+.t-area-wrap textarea {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
+
+.comment-btn {
+	width: 100%;
+}
+
+.comments {
+	width: 100%;
+	height: 552px;
+	overflow: auto;
+}
+
+.comment {
+	width: 100%;
+	height: 96px;
+	padding: 2px 0;
+}
+
+.mid {
+	width: 80%;
+	height: 30px;
+	float: left; 
+}
+
+.cregdate {
+	width: 20%;
+	height: 30px;
+	float: left;
+}
+
+.ccomment {
+	width: 100%;
+	height: 100%;
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.ccomment:last-of-type{
+	border-bottom: 0;
+}
+
+.second::after {
+	content: "초전";
+}
+.minute::after {
+	content: "분전";
+}
+.hour::after {
+	content: "시간전";
+}
+.day::after {
+	content: "일전";
+}
+.week::after {
+	content: "주전";
+}
+.month::after {
+	content: "개월전";
+}
+.year::after {
+	content: "년전";
+}
+
+@media screen and (max-width: 1200px){
+	#detail {
+		width: 800px;
+		height: 600px;
+		margin-top: -300px;
+		margin-left: -400px;
+	}
+	
+	.glass {
+		width: 531.45px;
+	}
+
+	.m-dia, 
+	.m-con,
+	.m-bo,
+	.modal-bcontent {
+		max-width: 800px;
+	}
+	
+	.img-wrap, .dots {
+		width: 530.45px;
+	}
+	
+	.comments-wrap {
+		height: 388px;
+	}
+	.comments {
+		height: 352px;
+	}
+}
+
+@media screen and (max-width: 900px){
+	#detail {
+		width: 600px;
+		height: 800px;
+		margin-top: -400px;
+		margin-left: -300px;
+	}
+
+	.m-dia, 
+	.m-con,
+	.m-bo,
+	.modal-bcontent {
+		max-width: 600px;
+	}
+	
+	.image-wrap {
+		width: 100%;
+		height: 50%; 
+		float: none;
+		border-right: 0;
+	}
+	
+	.img-wrap, .dots {
+		width: 597px;
+	}
+	
+	.glass {
+		width: 100%;
+		height: 50%;
+	}
+	
+	.dots {
+		bottom: 50%;
+	}
+	
+	.contents {
+		height: 120px;
+		margin-bottom: 5px;
+	}
+	
+	.contents-wrap {
+		width: 100%;
+		height: 400px;
+		font-size: 14px;
+		float: none;
+	}
+	
+	.btitle,
+	.bview {
+		height: 20px;
+	}
+	
+	.bcontent {
+		height: 80px;
+	}
+	
+	.comments-wrap {
+		height: 265px;
+	}
+	.comments {
+		height: 233px;
+	}
+}
+
 @media screen and (max-width: 600px){
 	.repair-wrap {
 		min-height: 407px;
@@ -87,5 +426,62 @@
 	
 	.page-item {
 		font-size: 0.7rem;
+	}
+	
+	#detail {
+		width: 90%;
+		height: 95vh;
+		top: 2.5vh;
+		margin-top: 0;
+		left: 5%;
+		margin-left: 0;
+	}
+
+	.m-dia, 
+	.m-con,
+	.m-bo,
+	.modal-bcontent {
+		max-width: 100%;
+	}
+	
+	.image-wrap, .glass {
+		width: 100%;
+		height: 50%; 
+		float: none;
+		border-right: 0;
+	}
+	
+	.dots {
+		width: 100%;
+		bottom: 50%;
+	}
+	
+	.contents {
+		height: 30%;
+		margin-bottom: 5px;
+	}
+	
+	.contents-wrap {
+		width: 100%;
+		height: 50%;
+		font-size: 14px;
+		float: none;
+	}
+	
+	.btitle,
+	.bview {
+		height: 15%;
+	}
+	
+	.bcontent {
+		height: 70%;
+	}
+	
+	.comments-wrap {
+		height: 69%;
+	}
+	
+	.comments {
+		height: 85%;
 	}
 }

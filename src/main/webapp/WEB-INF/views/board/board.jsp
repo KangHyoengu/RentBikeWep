@@ -70,7 +70,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item">
-								<a class="nav-link username">${username }</a>
+								<a class="nav-link username" href="${pageContext.request.contextPath }/member/info">${username }</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link logout">로그아웃</a>
@@ -91,6 +91,7 @@
 				<h2>자유게시판</h2>
 				<button type="button" name="write" class="btn btn-success write" data-bs-toggle="modal" data-bs-target="#write">게시글 작성하기</button>
 			</div>
+			<!-- 게시물 리스트 -->
 			<div class="repair-wrap">
 				<table class="table table-light table-striped table-hover">
 					<thead>
@@ -99,29 +100,33 @@
 							<th scope="col">제목</th>
 							<th scope="col">작성자</th>
 							<th scope="col">작성일</th>
+							<th scope="col">조회수</th>
 						</tr>
 					</thead>
 					<tbody id="tbody">
 						<c:choose>
 							<c:when test="${count != 0 }">
 								<c:forEach var="item" items="${list }">
-									<tr data-bs-toggle="modal" data-bs-target="#detail" onclick="detail()">
+									<tr data-bs-toggle="modal" data-bs-target="#detail" onclick="detail()" data-no="${item.bno }">
 										<th scope="row">${item.bno }</th>
 										<td>${item.btitle }</td>
 										<td>${item.mid }</td>
 										<td>${item.regdate }</td>
+										<td>${item.bview }</td>
 									</tr>
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<th class="nothing" colspan="4">작성된 게시글이 없습니다.</th>
+									<th class="nothing" colspan="5">작성된 게시글이 없습니다.</th>
 								</tr>
 							</c:otherwise>
 						</c:choose>
 					</tbody>
 				</table>
 			</div>
+			
+			<!-- 페이징 버튼 -->
 			<div class="page-wrap" data-total="${totalPage }">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
@@ -155,10 +160,11 @@
 					<div class="modal-body">
 						<form name="writeForm" action="${pageContext.request.contextPath }/board/write" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+							<input type="hidden" name="mid" value="${username }" />
 							<div class="input-wrap">
 								<h4>제목</h4> 
 								<div class="input-group mb-3">
-									<input type="text" name="btitle" class="form-control" placeholder="제목" aria-label="rtitle" aria-describedby="rtitle" required>
+									<input type="text" name="btitle" class="form-control" placeholder="제목" aria-label="btitle" aria-describedby="btitle" required>
 								</div>
 							</div>
 							
@@ -176,7 +182,7 @@
 								</div>
 								<div class="input-group upload-wrap">
 									<input type="file" class="form-control" id="up-file" name="upload" accept=".gif, .jpg, .png, .jpeg">
-								 	<button class="btn btn-outline-danger" id="minus" type="button" name="minus"><i class="fas fa-minus"></i></button>
+								 	<button class="btn btn-outline-danger" id="minus" type="button" name="minus" onclick="minusFN()"><i class="fas fa-minus"></i></button>
 								</div>
 							</div>
 						</form>
@@ -190,18 +196,36 @@
 		
 		<!-- 게시글보기 -->
 		<div class="modal fade" id="detail" tabindex="-1" aria-labelledby="detail" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">게시글 제목</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<p>게시글 본문</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
+			<div class="modal-dialog m-dia">
+				<div class="modal-content m-con">
+					<div class="modal-body m-bo">
+						<span class="x-btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></span>
+						<div class="modal-bcontent">
+							<div class="image-wrap text-center">
+								<div class="images"></div>
+								<div class="dots"></div>
+							</div>
+							<div class="contents-wrap">
+								<div class="contents" data-bno="0">
+									<div class="btitle"></div>
+									<div class="bview"></div>
+									<div class="bcontent"></div>
+								</div>
+								<div class="comments-wrap">
+									<div>
+										<button type="button" class="btn btn-success btn-sm comment-btn">댓글 쓰러가기</button>
+									</div>
+									<div class="comments-input" data-status="0">
+										<div class="userName">${username }</div>
+										<div class="t-area-wrap input-group">
+											<textarea class="form-control t-area"></textarea>
+										</div>
+										<button type="button" class="btn btn-outline-success comment-write">댓글 작성</button>
+									</div>
+									<div class="comments"></div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

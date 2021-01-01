@@ -1,7 +1,7 @@
 package com.rent.bike.beans.board;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -10,10 +10,12 @@ public class BoardCommentDTO {
 	private int cno;
 	private int bno;
 	private int mno;
+	private String mid;
 	private String ccontent;
-	private String regdate;
+	private double regdate;
 	
 	public void setRegdate(Timestamp regdate) {
-		this.regdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(regdate);
+		Date now = new Date();
+		this.regdate = now.getTime() - regdate.getTime();
 	}
 }

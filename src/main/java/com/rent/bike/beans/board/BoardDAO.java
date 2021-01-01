@@ -17,6 +17,10 @@ public interface BoardDAO {
 	public List<BoardImagesDTO> images(@Param("bno") int bno);
 	// 게시글 작성
 	public int insert(BoardDTO dto);
+	// 이미지 저장
+	public int insertImages(@Param("images") String[] images, @Param("bno") int bno);
+	// 댓글 작성
+	public int insertComment(BoardCommentDTO dto);
 	// 게시글 삭제
 	public int delete(@Param("bno") int bno);
 	// 게시글 수정

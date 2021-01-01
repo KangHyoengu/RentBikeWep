@@ -2,18 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.rent.bike.beans.member.MemberDAO">
+	<!-- 회원가입 -->
 	<insert id="signUp" flushCache="true" parameterType="com.rent.bike.beans.member.MemberDTO"
 								keyProperty="mno" useGeneratedKeys="true" keyColumn="mno">
 		INSERT INTO MEMBER VALUES
 		(MEMBER_MID_SEQ.NEXTVAL, #{mid}, #{mpw}, #{memail}, #{mname}, #{mbirth}, #{mgender}, #{mphone}, #{enabled})
 	</insert>
 	
+	<!-- 회원가입 권한부여 -->
 	<insert id="memberAuth" flushCache="true">
 		INSERT INTO MEMBER_AUTH VALUES
 		(#{mno}, #{mauth})
 	</insert>
 	
+	<!-- 아이디 중복 체크 -->
 	<select id="idOk" resultType="com.rent.bike.beans.member.MemberDTO">
-		SELECT * FROM MEMBER WHERE MID = #{id}
+		SELECT * FROM MEMBER WHERE MID = #{mid}
 	</select>
+	
+	<!-- 회원 정보 확인 -->
+	<select id="info" resultType="com.rent.bike.beans.member.MemberDTO">
+		SELECT * FROM MEMBER WHERE MID = #{mid}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="infoChange" flushCache="true">
+		UPDATE MEMBER SET
+		MPW = #{mpw},
+		MPHONE = #{mphone}
+		WHERE MID = #{mid}
+	</update>
+	
+	<!-- 비밀번호 찾기 (아이디, 이메일 치크) -->
+	<select id="search" resultType="com.rent.bike.beans.member.MemberDTO">
+		SELECT * FROM MEMBER WHERE MID = #{mid} AND MEMAIL = #{memail}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="passwordChange" flushCache="true">
+		UPDATE MEMBER SET
+		MPW = #{mpw}
+		WHERE MID = #{mid}
+	</update>
 </mapper>

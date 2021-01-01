@@ -3,6 +3,20 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="username" value='<%=session.getAttribute("username") %>' />
 
+<%
+	int tPage = 0;
+	int count = (int)request.getAttribute("totalPage");
+	
+	if(count != 0){
+		if(count % 10 != 0){
+			tPage = count / 10 + 1;	
+		} else {
+			tPage = count / 10;
+		}
+	}
+%>
+<c:set var="tPage" value='<%=tPage %>'/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,35 +51,11 @@
 			<div id="nav">
 				<ul class="nav nav-pills justify-content-end">
 					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath }/rent">대여하기</a>
+						<a class="nav-link now">수리 신청</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link now">시설수리신청</a>
+						<a class="nav-link" href="${pageContext.request.contextPath }/admin/adminMember">회원 관리</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath }/board">자유게시판</a>
-					</li>
-					<c:choose>
-						<c:when test="${fn:length(username) == 0 }">
-							<li class="nav-item">
-								<a class="nav-link" href="${pageContext.request.contextPath }/member/join">회원가입</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="${pageContext.request.contextPath }/security/login">로그인</a>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li class="nav-item">
-								<a class="nav-link username">${username }</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link logout">로그아웃</a>
-							</li>
-							<form name="logoutFrm" action="${pageContext.request.contextPath }/security/logout" method="POST">
-								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
-							</form>
-						</c:otherwise>
-					</c:choose>
 				</ul>
 			</div>
 		</div>
@@ -73,9 +63,9 @@
 	
 	<section>
 		<div class="content-wrap">
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
 			<div class="top">
 				<h2>시설 수리 신청</h2>
-				<button type="button" name="apply" class="btn btn-success apply" data-bs-toggle="modal" data-bs-target="#apply-detail">수리 신청하기</button>
 			</div>
 			<div class="repair-wrap">
 				<table class="table table-light table-striped table-hover">
@@ -91,9 +81,16 @@
 						<c:choose>
 							<c:when test="${fn:length(list) != 0 }">
 								<c:forEach var="item" items="${list }">
-									<tr>
+								<tr data-bs-toggle="modal" data-bs-target="#repair-detail" data-no="${item.repairno }">
 										<th scope="row">${item.repairno }</th>
+								<c:choose>
+									<c:when test="${item.rstatus == 1 }">
+										<td class="finish">${item.rtitle }</td>
+									</c:when>
+									<c:otherwise>
 										<td>${item.rtitle }</td>
+									</c:otherwise>
+								</c:choose>
 										<td>${item.mid }</td>
 										<td>${item.regdate }</td>
 									</tr>
@@ -108,22 +105,49 @@
 					</tbody>
 				</table>
 			</div>
+
+			<!-- Pagination -->
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center" data-totalPage="${totalPage }">
+					<li class="page-item disabled" id="previous" data-status="0"><a class="page-link"><i class="fas fa-angle-left"></i></a></li>
+					<c:if test="${totalPage > 10 }">
+						<c:set var="totalPage" value="<%=10 %>"/>
+					</c:if>
+					<c:forEach begin="1" end="${totalPage }" varStatus="status">
+						<c:if test="${status.index == 1 }">
+							<li class="page-item"><a class="page-link page-num nowPage" data-page="${status.index }">${status.index }</a></li>
+						</c:if>
+						<c:if test="${status.index != 1 }">
+							<li class="page-item"><a class="page-link page-num" data-page="${status.index }">${status.index }</a></li>
+						</c:if>
+					</c:forEach>
+					<li class="page-item" id="next" data-status="1"><a class="page-link"><i class="fas fa-angle-right"></i></a></li>
+				</ul>
+			</nav>
 		</div>
 		
 		<!-- Vertically centered scrollable modal -->
-		<div class="modal fade" id="apply-detail" tabindex="-1" aria-labelledby="apply-detail" aria-hidden="true">
+		<div class="modal fade" id="repair-detail" tabindex="-1" aria-labelledby="apply-detail" aria-hidden="true" data-no="">
 			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">Modal title</h5>
+						<h5 class="modal-title"></h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<p>Modal body text goes here.</p>
+						<div class="repairImg">
+							<img src="" />
+						</div>
+						<div class="applyUser"></div>
+						<div class="bikeno"></div>
+						<div class="rcategory"></div>
+						<div class="rcontent-wrap">
+							<div class="rcontent-title"></div>
+							<div class="rcontent"></div>
+						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
+						<button type="button" class="btn btn-success">수리 완료</button>
 					</div>
 				</div>
 			</div>
@@ -160,4 +184,10 @@
 
 <!-- Logout -->
 <script src="${pageContext.request.contextPath }/resources/security/JS/logout.js"></script>
+
+<!-- Pagination -->
+<script src="${pageContext.request.contextPath }/resources/admin/JS/repairPagination.js"></script>
+
+<!-- Detail -->
+<script src="${pageContext.request.contextPath }/resources/admin/JS/repairDetail.js"></script>
 </html>

@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rent.bike.beans.repair.RepairDAO">
-	<select id="repairList" resultType="com.rent.bike.beans.repair.RepairDTO">
-		<![CDATA[
-			
-		]]>
-	</select>
-	
-	<select id="countAll" resultType="int">
-		
-	</select>
-	
 	<insert id="applyRepair" flushCache="true" parameterType="com.rent.bike.beans.repair.RepairDTO">
 		INSERT INTO REPAIR VALUES
 		(REPAIR_SEQ.NEXTVAL, #{bikeno}, #{rtitle}, #{rcategory}, #{rcontent}, SYSDATE, #{rstatus}, (SELECT MNO FROM MEMBER WHERE MID = #{mid}), #{rimg})

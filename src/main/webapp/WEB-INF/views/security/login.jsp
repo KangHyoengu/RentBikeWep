@@ -46,7 +46,7 @@
 				    <a class="nav-link" href="${pageContext.request.contextPath }/member/join">회원가입</a>
 				  </li>
 				  <li class="nav-item">
-				    <a class="nav-link now" href="">로그인</a>
+				    <a class="nav-link now">로그인</a>
 				  </li>
 				</ul>
 			</div>
@@ -57,26 +57,60 @@
 		<div class="bgImg">
 			<div class="content-wrap">
 				<div class="login-wrap">
-					<form name="frm" action="${pageContext.request.contextPath }/login" method="post">
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
-					<h3>로그인</h3>
-					<div class="input-group mb-3">
-						<span class="input-group-text" id="username">ID</span> 
-						<input type="text" name="username" class="form-control" placeholder="아이디를 입력해 주세요." aria-label="username" aria-describedby="username">
+					<div class="wrap">
+						<div class="login">
+							<form name="frm" action="${pageContext.request.contextPath }/login" method="post">
+								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+								<h3>로그인</h3>
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="username">ID</span> 
+									<input type="text" name="username" class="form-control" placeholder="아이디를 입력해 주세요." aria-label="username" aria-describedby="username">
+								</div>
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="password">Password</span> 
+									<input type="password" name="password" class="form-control" placeholder="비밀번호를 입력해 주세요." aria-label="password" aria-describedby="password">
+								</div>
+					
+								<div class="btn-wrap">
+									<input type="button" class="btn btn-success" name="search-btn" value="ID/Password 찾기"/>
+									<input type="submit" id="btn_login" class="btn btn-success" value="로그인" />
+								</div>
+							</form>
+						</div>
+						<div class="search-wrap">
+							<div class="search">
+								<h3>아이디 비밀번호 찾기</h3>
+								
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="mid">ID</span> 
+									<input type="text" name="mid" class="form-control" placeholder="아이디를 입력해 주세요." aria-label="mid" aria-describedby="mid">
+								</div>
+								
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="email">EMAIL</span> 
+									<input type="text" name="email" class="form-control" placeholder="이메일을 입력해 주세요." aria-label="email" aria-describedby="email">
+									<button type="button" name="code-send-btn" class="btn btn-success">인증번호전송</button>
+								</div>
+								
+								<div class="input-group mb-3 hidden auth">
+									<span class="input-group-text" id="code">인증번호</span> 
+									<input type="text" name="code" class="form-control" placeholder="인증번호를 입력해 주세요." aria-label="code" aria-describedby="code">
+								</div>
+								
+								<div class="btn-wrap">
+									<input type="button" id="go-login" name="go-login" class="btn btn-success" value="로그인 하기" />
+									<input type="button" id="search" class="btn btn-success" name="search" value="ID/Password 찾기" disabled/>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="input-group mb-3">
-						<span class="input-group-text" id="password">Password</span> 
-						<input type="password" name="password" class="form-control" placeholder="비밀번호를 입력해 주세요." aria-label="password" aria-describedby="password">
-					</div>
-		
-					<div class="btn-wrap">
-						<input type="button" class="btn btn-success" value="ID/Password 찾기" />
-						<input type="submit" id="btn_login" class="btn btn-success" value="로그인" />
-					</div>
-				</form>
 				</div>
 			</div>
 		</div>
+		<form name="passwordChange" class="hidden" action="${pageContext.request.contextPath }/security/passwordChange" method="POST">
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+			<input type="hidden" name="mid" value="" />
+		</form>
 	</section>
 
 	<footer>
@@ -106,4 +140,7 @@
 	
 <!-- Header -->
 <script src="${pageContext.request.contextPath }/resources/main/JS/header.js"></script>
+
+<!-- ID/PW Search -->
+<script src="${pageContext.request.contextPath }/resources/security/JS/search.js"></script>
 </html>
